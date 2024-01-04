@@ -14,13 +14,27 @@ const Contacts = () => {
 
 	return (
 		<>
-			{filtered
-				? filtered.map((contact) => (
-						<ContactItem key={contact.id} contact={contact} />
-				  ))
-				: contacts.map((contact) => (
-						<ContactItem key={contact.id} contact={contact} />
-				  ))}
+			<TransitionGroup>
+				{filtered
+					? filtered.map((contact) => (
+							<CSSTransition
+								key={contact.id}
+								timeout={500}
+								classNames="item"
+							>
+								<ContactItem contact={contact} />
+							</CSSTransition>
+					  ))
+					: contacts.map((contact) => (
+							<CSSTransition
+								key={contact.id}
+								timeout={500}
+								classNames="item"
+							>
+								<ContactItem contact={contact} />
+							</CSSTransition>
+					  ))}
+			</TransitionGroup>
 		</>
 	);
 };
